@@ -1,0 +1,76 @@
+{% extends "/template_parts/base.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+
+<header>
+  <h1>Penunzen anlegen</h1>
+</header>
+<!-- <p>This is {{my_var}}</p> -->
+
+{% if feedback %}
+<p class="text-danger float-right">{{ feedback }}</p>
+{% endif %}
+<section>
+
+  <form class="eingabe-form" action="/" method="POST">
+
+    <p>
+      <label for="name">
+        <span>Name: </span>
+        <strong><abbr title="required">*</abbr></strong>
+      </label>
+      <input type="text" id="name" name="name">
+    </p>
+    <!-- <p>
+      <label for="mail">
+        <span>E-mail: </span>
+        <strong><abbr title="required">*</abbr></strong>
+      </label>
+      <input type="email" id="mail" name="usermail">
+    </p> -->
+    <p>
+      <label for="betrag">
+        <span>Betrag: </span>
+        <strong><abbr title="required">*</abbr></strong>
+      </label>
+      <input type="text" id="betrag" name="betrag">
+    </p>
+    <!-- <h2>Ich möchte spenden:</h2> -->
+    <fieldset class="spenden">
+      <legend>Ich spende dem Entwickler</legend>
+      <ul>
+        <li>
+          <label for="spenden_prozent">5% meines Betrages</label>
+          <input type="radio" id="spenden_prozent" name="spenden_typ" value="prozent" checked>
+        </li>
+        <li>
+          <label for="spenden_fix">5 Pfennig meines Betrages</label>
+          <input type="radio" id="spenden_fix" name="spenden_typ" value="fix">
+        </li>
+        <li>
+          <label for="spenden_nix">Gar nix von meinem Betrag</label>
+          <input type="radio" id="spenden_nix" name="spenden_typ" value="nix">
+        </li>
+      </ul>
+    </fieldset>
+
+    <button type="submit" class="btn btn-primary">Absenden</button>
+
+  </form>
+</section>
+<section class="blockchain">
+  <h2>Die Blockchain</h2>
+<ul>
+  {% for item in nonceList -%}
+    <li class="block">
+      <p>{{ item }}</p>
+    </li>
+  {%- endfor %}
+</ul>
+</section>
+
+<!-- <img src="{{ url_for('static', filename='img/result_image.jpg') }}" alt=""> -->
+
+{% endblock %}
